@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -8,7 +10,10 @@ import java.awt.Color;
  */
 public class TelaCronometro extends javax.swing.JFrame {
 
-
+    int delay = 0;
+    int interval = 1000;
+    int val = 0;
+    Timer timer;
     public TelaCronometro() {
         initComponents();
         btStart.setBackground(new Color(71,165,185));
@@ -55,11 +60,6 @@ public class TelaCronometro extends javax.swing.JFrame {
         tfField.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         tfField.setMaximumSize(new java.awt.Dimension(154, 28));
         tfField.setPreferredSize(new java.awt.Dimension(154, 28));
-        tfField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfFieldActionPerformed(evt);
-            }
-        });
 
         btStart.setBackground(new java.awt.Color(71, 165, 185));
         btStart.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -67,6 +67,11 @@ public class TelaCronometro extends javax.swing.JFrame {
         btStart.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         btStart.setMaximumSize(new java.awt.Dimension(80, 28));
         btStart.setPreferredSize(new java.awt.Dimension(80, 28));
+        btStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btStartActionPerformed(evt);
+            }
+        });
 
         btStop.setBackground(new java.awt.Color(185, 71, 71));
         btStop.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -74,6 +79,11 @@ public class TelaCronometro extends javax.swing.JFrame {
         btStop.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         btStop.setMaximumSize(new java.awt.Dimension(80, 28));
         btStop.setPreferredSize(new java.awt.Dimension(80, 28));
+        btStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btStopActionPerformed(evt);
+            }
+        });
 
         btReset.setBackground(new java.awt.Color(79, 185, 71));
         btReset.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -81,6 +91,11 @@ public class TelaCronometro extends javax.swing.JFrame {
         btReset.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         btReset.setMaximumSize(new java.awt.Dimension(80, 28));
         btReset.setPreferredSize(new java.awt.Dimension(80, 28));
+        btReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -135,13 +150,38 @@ public class TelaCronometro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfFieldActionPerformed
+    private void btStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStartActionPerformed
+        startTimer();
+    }//GEN-LAST:event_btStartActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStopActionPerformed
+        stopTimer();
+    }//GEN-LAST:event_btStopActionPerformed
+
+    private void btResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btResetActionPerformed
+        resetTimer(evt);
+    }//GEN-LAST:event_btResetActionPerformed
+
+    private void startTimer(){
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                tfField.setText(Integer.toString(val++));
+            }
+        }, delay, interval);
+    }
+    
+    private void stopTimer(){
+        timer.cancel();
+    }
+    
+    private void resetTimer(java.awt.event.ActionEvent evt){
+        val = 0;
+        tfField.setText("0");
+        btStopActionPerformed(evt);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -152,9 +152,6 @@
                   <Dimension value="[154, 28]"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btStart">
               <Properties>
@@ -180,6 +177,9 @@
                   <Dimension value="[80, 28]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btStartActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btStop">
               <Properties>
@@ -205,6 +205,9 @@
                   <Dimension value="[80, 28]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btStopActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btReset">
               <Properties>
@@ -230,6 +233,9 @@
                   <Dimension value="[80, 28]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btResetActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
